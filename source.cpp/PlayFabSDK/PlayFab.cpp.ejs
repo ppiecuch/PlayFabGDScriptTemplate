@@ -1,7 +1,7 @@
-extends Node
+#include "core/"
 
+// PlayFab enums
 
-# -------------------------------------------------------------------- enum(s)
 enum E_PRO {
     CHK_SESSION_TICKET,
     CHK_ENTITY_TOKEN,
@@ -9,18 +9,19 @@ enum E_PRO {
     USE_TITLE_ID,
     USE_AUTH_AUTHORIZATION,
     USE_AUTH_ENTITY_TOKEN,
-    USE_AUTH_SECRET_KEY
-}
+    USE_AUTH_SECRET_KEY,
+};
 
 enum E_EPI {
     UPD_SESSION_TICKET,
     UPD_ENTITY_TOKEN,
     UPD_ATTRIBUTE,
-    REQ_MULTI_STEP_CLIENT_LOGIN
-}
+    REQ_MULTI_STEP_CLIENT_LOGIN,
+};
 
 
-# ------------------------------------------------------------------- const(s)
+// PlayFab consts
+
 <% for (var a = 0; a < apis.length; a++) { var api = apis[a]; %>
 const <%- api.name %> = preload("res://PlayFabSDK/PlayFabAPI_<%- api.name %>.gd")<% } %>
 
