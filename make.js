@@ -73,7 +73,7 @@ exports.makeCombinedAPI = function (apis, sourceDir, apiOutputDir) {
     var locals = {
         apis: apis,
         buildIdentifier: sdkGlobals.buildIdentifier,
-        friendlyName: "PlayFab GDScript Combined Sdk",
+        friendlyName: "PlayFab Godot Combined Sdk",
         errorList: apis[0].errorList,
         errors: apis[0].errors,
         sdkVersion: sdkGlobals.sdkVersion,
@@ -84,10 +84,8 @@ exports.makeCombinedAPI = function (apis, sourceDir, apiOutputDir) {
 
     for (var i = 0; i < apis.length; i++) {
         // console.log("API >>> " + apis[i].url + " " + apis[i].name);
-
         for (var j = 0; j < apis[i].calls.length; j++) {
             // console.log("    CALL >>> " + apis[i].calls[j].url + " " + apis[i].calls[j].name);
-
             var api_locals = {
                 api: apis[i],
                 getRequestActions: getRequestActions,
@@ -96,8 +94,8 @@ exports.makeCombinedAPI = function (apis, sourceDir, apiOutputDir) {
                 hasClientOptions: getAuthMechanisms([apis[i]]).includes("SessionTicket")
             }
 
-            var apiTemplate = getCompiledTemplate(path.resolve(sourceDir, "templates/API.gd.ejs"));
-            writeFile(path.resolve(apiOutputDir, "PlayFabSDK/PlayFabAPI_" + apis[i].name + ".gd"), apiTemplate(api_locals));
+            var apiTemplate = getCompiledTemplate(path.resolve(sourceDir, "templates/API.gd.cpp.ejs"));
+            writeFile(path.resolve(apiOutputDir, "PlayFabSDK/PlayFabAPI_" + apis[i].name + ".cpp"), apiTemplate(api_locals));
         }
     }
 
